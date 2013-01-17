@@ -1,0 +1,158 @@
+.staffscheduler .x-grid-inner-locked .x-grid-cell
+{
+    border-bottom-color: lightBlue;
+    border-top-color: #FFEEEE;
+    color:#fff;
+    background:transparent;
+}
+
+.taskgrid .x-grid-cell
+{
+    cursor:pointer;
+    height:26px;
+}
+
+.staffscheduler .x-grid-inner-locked .x-grid-row-selected .x-grid-cell {
+    background-color: navy !important;
+}
+
+.staffscheduler .x-grid-inner-locked .x-grid-cell-first div
+{
+    background: url(../images/user.png) no-repeat 3px center;
+    padding-left:27px;
+}
+
+.staffscheduler .sch-schedulerview
+{
+    background: grey;
+}
+
+.staffscheduler .x-grid-inner-locked .x-grid-view
+{
+    background: url(../images/dark-bg-lines.gif) repeat left center;
+}
+
+.staffscheduler .x-grid-inner-locked .x-grid-view td
+{
+    border-top-color: transparent !important;
+    border-bottom-color: transparent !important;
+}
+
+.staffscheduler .sch-schedulerview td {
+    border-bottom-color: #666 !important;
+    border-top-color: #eee !important;
+    border-right-color: #666 !important;
+}
+
+.taskgrid .x-grid-row .x-grid-cell-first .x-grid-cell-inner
+{
+    background: url(../images/puzzle.png) no-repeat 2px center !important;
+    padding-left:24px;
+}
+
+.taskgrid .x-grid-cell-inner, .sch-schedulerpanel .x-grid-inner-locked .x-grid-cell-inner
+{
+    font-size:12px;
+    line-height:20px !important;
+}
+
+.sch-event 
+{
+    opacity:0.9;
+    background-color:limegreen;
+    border: 1px solid green;
+	color:#fff;
+    cursor: pointer;
+    font-size:1.2em;
+    text-align : center;
+    -moz-box-shadow:1px 1px 1px rgba(100, 100, 100, 0.2);
+    -webkit-box-shadow:1px 1px 1px rgba(100, 100, 100, 0.2);
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius: 10px;
+    line-height:16px;
+}
+
+div.invalid
+{
+    background-color:Red;
+    color:black;
+}
+
+div.invalid .sch-event-inner
+{
+    background: transparent url(../images/error.png) no-repeat left top;
+    padding-left:22px;
+}
+
+div.sch-event-hover 
+{
+    border-color:#333;
+}
+
+.sch-event-selected 
+{
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    border-color:#000 !important; 
+    opacity:1;
+}
+
+.taskgrid .x-grid-cell
+{
+    border-right: 0 !important;
+}
+
+
+/* Poor IE always misunderstanding z-index */
+.x-ie .x-grid-table
+{
+    position:relative;
+    z-index:2;
+}
+
+/* Some style indicating an availability interval is special */
+div.optimal
+{
+    background: Aqua !important;
+    border-color:navy;
+}
+
+.staffscheduler .optimal
+{
+    background: Aqua url(../images/accept.png) no-repeat 2px center !important;
+    opacity:0.9;
+}
+
+.staffscheduler .sch-column-line
+{
+    border-left-color:grey;
+    opacity:0.5;
+	filter: alpha(opacity=50);
+}
+
+
+.sch-resourcezone,
+.availability-scheduler .sch-event 
+{
+	background: darkseagreen url(../images/pattern.png) repeat 0 0;
+}
+
+
+.availability-scheduler .sch-event 
+{
+	color:#fff;
+    cursor: pointer;
+    font-size:1.2em;
+    text-align : center;
+    -moz-box-shadow:1px 1px 1px rgba(100, 100, 100, 0.2);
+    -webkit-box-shadow:1px 1px 1px rgba(100, 100, 100, 0.2);
+    line-height:19px;
+    border-radius:0;
+}
+
+
+.sch-dd-wrap
+{
+    height : 45px;    
+}
