@@ -11,7 +11,6 @@ Ext.define("MyApp.view.Container", {
         'MyApp.store.EventStore',
 
         'MyApp.view.EmployeeScheduler',
-        'MyApp.view.AvailabilityGrid',
         'MyApp.view.UnplannedTaskGrid'
     ],
 
@@ -49,16 +48,6 @@ Ext.define("MyApp.view.Container", {
                     resourceStore   : resourceStore,
                     resourceZones   : availabilityStore,
                     eventStore      : eventStore
-                },
-                {
-                    xtype           : 'availabilitygrid',
-                    region          : 'south',
-                    height          : 200,
-                    startDate       : this.startDate,
-                    endDate         : this.endDate,
-                    resourceStore   : resourceStore,
-                    eventStore      : availabilityStore,
-                    weight          : -2
                 },
                 {
                     xtype           : 'unplannedtaskgrid',
