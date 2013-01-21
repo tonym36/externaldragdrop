@@ -38,6 +38,10 @@ Ext.define("MyApp.view.EmployeeScheduler", {
                 if (!availabilityStore.isResourceAvailable(resourceRecord, event.getStartDate(), event.getEndDate())) {
                     meta.cls = 'invalid';
                 }
+
+                if (event.data.Color) {
+                    meta.style = 'background-color:' + event.data.Color;
+                }
                 return event.getName();
             },
 
