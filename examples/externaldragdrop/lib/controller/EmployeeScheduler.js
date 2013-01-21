@@ -22,7 +22,8 @@ Ext.define("MyApp.controller.EmployeeScheduler", {
                 unplannedtaskdrop : this.onUnplannedTaskDrop
             },
             'employeescheduler' : {
-                eventclick : this.onTaskClick
+                eventclick : this.onTaskClick,
+                eventcontextmenu : this.onTaskContextMenu
             }
         });
     },
@@ -62,5 +63,30 @@ Ext.define("MyApp.controller.EmployeeScheduler", {
 
         this.detailWin.show();
         this.detailWin.body.update('Showing task: ' + task.getName());
+    },
+
+    onTaskContextMenu: function (s, eventModel, e) {
+        e.stopEvent();
+
+        if (!s.ctx) {
+            s.ctx = new Ext.menu.Menu({
+                items: [
+                    {
+                        text: 'Shift 1hr',
+                        handler : function() {
+                            s.ctx.model.shift(Sch.util.Date.HOUR, 1);
+                        }
+                    },
+                    {
+                        text: 'Delete event',
+                        handler : function() {
+                            s.eventStore.remove(s.ctx.model);
+                        }
+                    }
+                ]
+            });
+        }
+        s.ctx.model = eventModel;
+        s.ctx.showAt(e.getXY());
     }
 })
