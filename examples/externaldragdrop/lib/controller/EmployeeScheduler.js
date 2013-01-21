@@ -20,6 +20,9 @@ Ext.define("MyApp.controller.EmployeeScheduler", {
             // We should react to task drops coming from the external grid
             'employeescheduler schedulergridview' : {
                 unplannedtaskdrop : this.onUnplannedTaskDrop
+            },
+            'employeescheduler' : {
+                eventclick : this.onTaskClick
             }
         });
     },
@@ -37,5 +40,27 @@ Ext.define("MyApp.controller.EmployeeScheduler", {
         droppedTask.assign(targetResource);
 
         employeeScheduler.eventStore.add(droppedTask);
+    },
+
+    onTaskClick : function(scheduler, task){
+        if (!this.detailWin) {
+            this.detailWin = new Ext.Window({
+                title : 'Task details',
+                width : 200,
+                height : 200,
+                closeAction : 'hide',
+                buttons : [
+                    {
+                        text : 'Hide',
+                        handler : function(){
+                            this.up('window').close();
+                        }
+                    }
+                ]
+            });
+        }
+
+        this.detailWin.show();
+        this.detailWin.body.update('Showing task: ' + task.getName());
     }
 })

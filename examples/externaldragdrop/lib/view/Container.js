@@ -33,14 +33,6 @@ Ext.define("MyApp.view.Container", {
         Ext.apply(this, {
             items   : [
                 {
-                    // Just some pure HTML for now
-                    region          : 'north',
-                    contentEl       : 'example-description',
-                    height          : 80,
-                    border          : false,
-                    weight          : 30
-                },
-                {
                     xtype           : 'employeescheduler',
                     region          : 'center',
                     startDate       : this.startDate,
