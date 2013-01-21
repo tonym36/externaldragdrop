@@ -69,6 +69,8 @@ Ext.define("MyApp.view.EmployeeScheduler", {
                     }
                 }
             ],
+
+            tbar : this.createToolbar(),
             
             viewConfig : {
                 stripeRows  : false,
@@ -107,6 +109,58 @@ Ext.define("MyApp.view.EmployeeScheduler", {
         var taskDropZone = new MyApp.view.UnplannedTaskDropZone(this.getEl(), {
             schedulerView   : this.getSchedulingView()
         });
+    },
+
+    createToolbar : function() {
+        // By setting 'scope' to this in the code below, we keep 'this' pointing to the scheduler instance
+
+        return [
+            {
+                text : '<-',
+                handler : function() {
+                    this.shiftPrevious();
+                },
+                scope : this
+            },
+            {
+                text : 'Days',
+                handler : function() {
+                    this.switchViewPreset('dayAndWeek');
+                },
+                scope : this
+            },
+            {
+                text : 'Weeks',
+                handler : function() {
+                    this.switchViewPreset('weekAndMonth');
+                },
+                scope : this
+            },
+            {
+                text : 'Months',
+                handler : function() {
+                    this.switchViewPreset('monthAndYear');
+                },
+                scope : this
+            },
+            {
+                xtype       : 'datefield',
+                emptyText   : 'Select a date...',
+                listeners   : {
+                    select : function(picker) {
+                        this.setStart(picker.getValue());
+                    },
+                    scope : this
+                }
+            },
+            {
+                text : '->',
+                handler : function() {
+                    this.shiftNext();
+                },
+                scope : this
+            }
+        ];
     }
 });
     
