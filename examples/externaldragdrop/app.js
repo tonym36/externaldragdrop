@@ -26,11 +26,43 @@ Ext.application({
     autoCreateViewport	: false,
 
     launch      : function() {
-        var container = new MyApp.view.Container({
+        var me = this;
+
+        // First create some simple buttons
+        var addEventButton = new Ext.Button({
+            text : 'Add event to scheduler',
+            renderTo : document.body,
+            handler : function() {
+                var scheduler = me.getScheduler();
+                var newTask = new scheduler.eventStore.model({
+                    StartDate : new Date(2011, 8, 1, 10),
+                    EndDate : new Date(2011, 8, 1, 12),
+                    Name : 'Foo'
+                });
+                newTask.assign(scheduler.resourceStore.first());
+                scheduler.eventStore.add(newTask);
+            }
+        });
+
+        var removeEventButton = new Ext.Button({
+            text : 'Remove some task',
+            renderTo : document.body,
+            handler : function() {
+                // Just remove some task from the store
+                var scheduler = me.getScheduler();
+                scheduler.eventStore.removeAt(0)
+            }
+        })
+
+        this.mainContainer = new MyApp.view.Container({
             startDate   : new Date(2011, 8, 1, 8),
             endDate     : new Date(2011, 8, 1, 17),
             renderTo    : Ext.getBody()
         });
+    },
+
+    getScheduler : function() {
+        return this.mainContainer.down('employeescheduler');
     }
 });
 

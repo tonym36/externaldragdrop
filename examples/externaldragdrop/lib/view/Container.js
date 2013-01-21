@@ -62,7 +62,7 @@ Ext.define("MyApp.view.Container", {
                 },
                 {
                     xtype           : 'unplannedtaskgrid',
-                    width           : 180,
+                    width           : 280,
                     split           : true,
                     region          : 'east',
                     weight          : 20
