@@ -60,7 +60,7 @@ Ext.define("MyApp.view.EmployeeScheduler", {
                     header      : 'Staff',
                     width       : 120,
                     dataIndex   : 'Name'
-                },
+                }/*,
                 {
                     header      : 'Availability',
                     width       : 180,
@@ -71,7 +71,7 @@ Ext.define("MyApp.view.EmployeeScheduler", {
                             return D.format(a.getStartDate(), 'G:i') + ' - ' + D.format(a.getEndDate(), 'G:i');
                         }).join(', ');
                     }
-                }
+                }*/
             ],
 
             tbar : this.createToolbar(),
@@ -117,53 +117,78 @@ Ext.define("MyApp.view.EmployeeScheduler", {
 
     createToolbar : function() {
         // By setting 'scope' to this in the code below, we keep 'this' pointing to the scheduler instance
-
+		
         return [
-            {
-                text : '<-',
-                handler : function() {
-                    this.shiftPrevious();
-                },
-                scope : this
-            },
-            {
-                text : 'Days',
-                handler : function() {
-                    this.switchViewPreset('dayAndWeek');
-                },
-                scope : this
-            },
-            {
-                text : 'Weeks',
-                handler : function() {
-                    this.switchViewPreset('weekAndMonth');
-                },
-                scope : this
-            },
-            {
-                text : 'Months',
-                handler : function() {
-                    this.switchViewPreset('monthAndYear');
-                },
-                scope : this
-            },
-            {
-                xtype       : 'datefield',
-                emptyText   : 'Select a date...',
-                listeners   : {
-                    select : function(picker) {
-                        this.setStart(picker.getValue());
-                    },
-                    scope : this
-                }
-            },
-            {
-                text : '->',
-                handler : function() {
-                    this.shiftNext();
-                },
-                scope : this
-            }
+        	{
+        		xtype : 'buttongroup',
+        		title : '',
+        		columns : 3,
+        		defaults : {
+        			scale : 'small'
+        		},
+        		items : [
+        			
+        			{
+		                text : 'Previous',
+	                	iconCls : 'icon-prev',
+	                	handler : function() {
+	                    	this.shiftPrevious();
+	                	},
+	                	scope : this
+		            },
+		            {
+		            	text : 'Next',
+	                	iconCls : 'icon-next',
+	                	handler : function() {
+	                    	this.shiftNext();
+	                	},
+	                	scope : this
+		            },
+		            {
+		                text : 'Day',
+		                iconCls : 'icon-calendar',
+		                handler : function() {
+		                    this.switchViewPreset('hourAndDay');
+		                },
+		                scope : this
+		            },
+		            {
+		                text : 'Days',
+		                iconCls : 'icon-calendar',
+		                handler : function() {
+		                    this.switchViewPreset('dayAndWeek');
+		                },
+		                scope : this
+		            },
+		            {
+		                text : 'Weeks',
+		                iconCls : 'icon-calendar',
+		                handler : function() {
+		                    this.switchViewPreset('weekAndMonth');
+		                },
+		                scope : this
+		            },
+		            {
+		                text : 'Months',
+		                iconCls : 'icon-calendar',
+		                handler : function() {
+		                    this.switchViewPreset('monthAndYear');
+		                },
+		                scope : this
+		            },
+		            {
+		                xtype       : 'datefield',
+		                emptyText   : 'Select a date...',
+		                listeners   : {
+		                    select : function(picker) {
+		                        this.setStart(picker.getValue());
+		                    },
+		                    scope : this
+		                }
+            		}
+        		
+        		]
+        	}
         ];
     }
 });

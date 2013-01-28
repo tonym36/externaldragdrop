@@ -20,16 +20,24 @@
 {
     background: url(../images/user.png) no-repeat 3px center;
     padding-left:27px;
+    color: #252525 !important;
+}
+
+.sch-schedulerpanel .x-grid-inner-locked .x-grid-row-focused .x-grid-cell-inner {
+	color: #FFFFFF !important;
 }
 
 .staffscheduler .sch-schedulerview
 {
-    background: grey;
+    /*background: grey;*/
+    background-color: #FFFFFF;
+    
 }
 
 .staffscheduler .x-grid-inner-locked .x-grid-view
 {
-    background: url(../images/dark-bg-lines.gif) repeat left center;
+    /*background: url(../images/dark-bg-lines.gif) repeat left center;*/
+    background-color: #FFFFFF;
 }
 
 .staffscheduler .x-grid-inner-locked .x-grid-view td
@@ -39,9 +47,10 @@
 }
 
 .staffscheduler .sch-schedulerview td {
-    border-bottom-color: #666 !important;
+    /*border-bottom-color: #666 !important;
     border-top-color: #eee !important;
-    border-right-color: #666 !important;
+    border-right-color: #666 !important;*/
+    border: 0 !important;
 }
 
 .taskgrid .x-grid-row .x-grid-cell-first .x-grid-cell-inner
