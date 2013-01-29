@@ -16,7 +16,7 @@ Ext.define("MyApp.view.EmployeeScheduler", {
     ],
 
     // Some basic panel config properties
-    title               : 'Staff schedule  (drag unplanned tasks onto the schedule)',
+    title               : 'Staff schedule',
     cls                 : 'staffscheduler',
 
     // Some grid configs

@@ -16,7 +16,7 @@ Ext.define("MyApp.view.Container", {
 
     // Some panel configs
     layout      : 'border',
-    width       : 1200,
+    width       : window.innerWidth - 20,
     height      : 600,
     border      : false,
 

@@ -22,7 +22,7 @@
 body {
 	font-family:helvetica,tahoma,verdana,sans-serif;
 	/*padding:32px 20px 20px 20px;*/
-	padding: 5px;
+	padding: 10px;
     font-size:13px;
 }
 
@@ -116,4 +116,12 @@ a:hover
 	border-right: 1px solid #BDCBDE !important;
 }
 
+.x-panel-header-default {
+    background-color: #D6D3CE;
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,#FFFFFF),color-stop(100%,#D6D3CE)) !important;
+}
+
+.x-panel-header-text-default {
+    color: #252525 !important;
+}
 
