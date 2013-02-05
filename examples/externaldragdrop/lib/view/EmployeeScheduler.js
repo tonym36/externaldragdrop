@@ -80,6 +80,21 @@ Ext.define("MyApp.view.EmployeeScheduler", {
                 stripeRows  : false,
                 barMargin   : 3,
                 forceFit    : true
+            },
+
+            listeners: {
+                eventdragstart: function(){
+                    console.log('eventdragstart');
+                },
+                eventdrop: function(){
+                    console.log('eventdrop');
+                },
+                eventresizestart: function(){
+                    console.log('eventresizestart');
+                },
+                eventresizeend: function(){
+                    console.log('eventresizeend');
+                }
             }
         });
         
