@@ -95,10 +95,10 @@ Ext.define("MyApp.view.UnplannedTaskGrid", {
                                         if (form.isValid()) {
                                             var values = form.getValues(),
                                                 filter = values.tasksFilter,
-                                                store = panel.store;
-
-                                                tasks = store.queryBy(function(task){
-                                                    return task.getName().contains(filter);
+                                                store  = panel.store;
+                                                rgxp   = new RegExp(filter, 'gi');
+                                                tasks  = store.queryBy(function(record){
+                                                    return record.getName().match(rgxp);
                                                 });
 
                                             var obj = {

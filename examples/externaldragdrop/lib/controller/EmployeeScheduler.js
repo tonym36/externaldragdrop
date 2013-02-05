@@ -86,7 +86,6 @@ Ext.define("MyApp.controller.EmployeeScheduler", {
                     {
                         text: 'Unplann this task',
                         handler: function(){
-                            console.log('arguments: ', arguments);
                             var record = s.ctx.model,
                                 unplannedStore = Ext.ComponentQuery.query('unplannedtaskgrid')[0].store;
 

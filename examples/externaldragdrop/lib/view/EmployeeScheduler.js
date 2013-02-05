@@ -232,11 +232,12 @@ Ext.define("MyApp.view.EmployeeScheduler", {
                                 panel = this.panel;
 
                             if (form.isValid()) {
-                                var values = form.getValues(),
+                                var values    = form.getValues(),
                                     resFilter = values.resourceFilter,
-                                    resStore = panel.resourceStore,
-                                    records = resStore.queryBy(function(record){
-                                        return record.getName().contains(resFilter);
+                                    resStore  = panel.resourceStore,
+                                    rgxp      = new RegExp(resFilter, 'gi');
+                                    records   = resStore.queryBy(function(record){
+                                        return record.getName().match(rgxp);
                                     });
 
                                 //`values` returns an object with all of the form fields and values,
