@@ -12,7 +12,8 @@ Ext.define("MyApp.view.EmployeeScheduler", {
         'MyApp.store.AvailabilityStore',
         'MyApp.store.ResourceStore',
         'MyApp.store.EventStore',
-        'MyApp.view.UnplannedTaskDropZone'
+        'MyApp.view.UnplannedTaskDropZone',
+        'Sch.plugin.CurrentTimeLine'
     ],
 
     // Some basic panel config properties
@@ -80,6 +81,26 @@ Ext.define("MyApp.view.EmployeeScheduler", {
                 stripeRows  : false,
                 barMargin   : 3,
                 forceFit    : true
+            },
+
+            //change the 'updateInterval' in ms to get a different refresh rate
+            plugins         : [
+                Ext.create('Sch.plugin.CurrentTimeLine', { updateInterval : 1000 })
+            ],
+
+            listeners: {
+                eventdragstart: function(){
+                    console.log('eventdragstart');
+                },
+                eventdrop: function(){
+                    console.log('eventdrop');
+                },
+                eventresizestart: function(){
+                    console.log('eventresizestart');
+                },
+                eventresizeend: function(){
+                    console.log('eventresizeend');
+                }
             }
         });
         
