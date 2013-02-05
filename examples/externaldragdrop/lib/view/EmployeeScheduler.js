@@ -207,9 +207,54 @@ Ext.define("MyApp.view.EmployeeScheduler", {
 		                    scope : this
 		                }
             		}
-        		
         		]
-        	}
+        	},
+            {
+                xtype: 'form',
+                title: 'Search resources',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        name: 'resourceFilter',
+                        width: 150
+                    }
+                ],
+                buttons: [
+                    {
+                        text: 'Submit',
+                        formBind: true,
+                        disabled: true,
+                        panel : this,
+                        handler: function() {
+                            var form = this.up('form').getForm(),
+
+                                //handler to scheduler panel
+                                panel = this.panel;
+
+                            if (form.isValid()) {
+                                var values = form.getValues(),
+                                    resFilter = values.resourceFilter,
+                                    resStore = panel.resourceStore,
+                                    records = resStore.queryBy(function(record){
+                                        return record.getName().contains(resFilter);
+                                    });
+
+                                //`values` returns an object with all of the form fields and values,
+                                //so you can either do queryBy with all values at once, or once per
+                                //field and return multiple searches
+                                var obj = {
+                                    filterValue : resFilter,
+                                    resources : records.getRange()
+                                }
+
+                                console.log('OBJ: ', obj);
+
+                                //now you can reload your panel
+                            }
+                        }
+                    }
+                ]
+            }
         ];
     }
 });
