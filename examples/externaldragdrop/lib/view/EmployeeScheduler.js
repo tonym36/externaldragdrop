@@ -1,3 +1,107 @@
+// custom view presets:
+
+Sch.preset.Manager.registerPreset("hourAnd1Day", {
+    "timeColumnWidth":60,
+    "rowHeight":24,
+    "resourceColumnWidth":100,
+    "displayDateFormat":"G:i",
+    "shiftIncrement":1,
+    "shiftUnit":"d",
+    "defaultSpan":24,
+    "timeResolution":{
+        "unit":"mi",
+        "increment": 30
+    },
+    "headerConfig": {
+        "middle": {
+            "unit":"h",
+            "dateFormat":"H:i",
+            "increment": 1
+        },
+        "top":{
+            "unit":"d",
+            "dateFormat":"l m/d/Y"
+        }
+    }
+});
+
+Sch.preset.Manager.registerPreset("hourAnd2Days", {
+    "timeColumnWidth":60,
+    "rowHeight":24,
+    "resourceColumnWidth":100,
+    "displayDateFormat":"G:i",
+    "shiftIncrement":1,
+    "shiftUnit":"d",
+    "defaultSpan":48,
+    "timeResolution":{
+        "unit":"mi",
+        "increment": 30
+    },
+    "headerConfig": {
+        "middle": {
+            "unit":"h",
+            "dateFormat":"H:i",
+            "increment": 2
+        },
+        "top":{
+            "unit":"d",
+            "dateFormat":"l m/d/Y"
+        }
+    }
+});
+
+Sch.preset.Manager.registerPreset("hourAnd3Days", {
+    "timeColumnWidth":60,
+    "rowHeight":24,
+    "resourceColumnWidth":100,
+    "displayDateFormat":"G:i",
+    "shiftIncrement":1,
+    "shiftUnit":"d",
+    "defaultSpan":72,
+    "timeResolution":{
+        "unit":"mi",
+        "increment": 30
+    },
+    "headerConfig": {
+        "middle": {
+            "unit":"h",
+            "dateFormat":"H:i",
+            "increment": 3
+        },
+        "top":{
+            "unit":"d",
+            "dateFormat":"l m/d/Y"
+        }
+    }
+});
+
+Sch.preset.Manager.registerPreset("hourAnd4Days", {
+    "timeColumnWidth":60,
+    "rowHeight":24,
+    "resourceColumnWidth":100,
+    "displayDateFormat":"G:i",
+    "shiftIncrement":1,
+    "shiftUnit":"d",
+    "defaultSpan":96,
+    "timeResolution":{
+        "unit":"mi",
+        "increment": 30
+    },
+    "headerConfig": {
+        "middle": {
+            "unit":"h",
+            "dateFormat":"H:i",
+            "increment": 4
+        },
+        "top":{
+            "unit":"d",
+            "dateFormat":"l m/d/Y"
+        }
+    }
+});
+
+// ===================================
+
 /**
  * This employee scheduler shows the tasks booked for each resource.
  * Additionally it show the availability for each resource, configured through the 'resourceZones' config property.
@@ -26,7 +130,7 @@ Ext.define("MyApp.view.EmployeeScheduler", {
     // Some scheduler config properties
     enableDragCreation  : false,
     rowHeight           : 30,
-    viewPreset          : 'hourAndDay',
+    viewPreset          : 'hourAnd1Day',
 
     initComponent : function() {
         var availabilityStore = this.resourceZones;
@@ -166,34 +270,34 @@ Ext.define("MyApp.view.EmployeeScheduler", {
 	                	scope : this
 		            },
 		            {
-		                text : 'Day',
+		                text : '1Day',
 		                iconCls : 'icon-calendar',
 		                handler : function() {
-		                    this.switchViewPreset('hourAndDay');
+		                    this.switchViewPreset('hourAnd1Day');
 		                },
 		                scope : this
 		            },
 		            {
-		                text : 'Days',
+		                text : '2Days',
 		                iconCls : 'icon-calendar',
 		                handler : function() {
-		                    this.switchViewPreset('dayAndWeek');
+		                    this.switchViewPreset('hourAnd2Days');
 		                },
 		                scope : this
 		            },
 		            {
-		                text : 'Weeks',
+		                text : '3Days',
 		                iconCls : 'icon-calendar',
 		                handler : function() {
-		                    this.switchViewPreset('weekAndMonth');
+		                    this.switchViewPreset('hourAnd3Days');
 		                },
 		                scope : this
 		            },
 		            {
-		                text : 'Months',
+		                text : '4Days',
 		                iconCls : 'icon-calendar',
 		                handler : function() {
-		                    this.switchViewPreset('monthAndYear');
+		                    this.switchViewPreset('hourAnd4Days');
 		                },
 		                scope : this
 		            },
