@@ -100,7 +100,106 @@ Sch.preset.Manager.registerPreset("hourAnd4Days", {
     }
 });
 
+Sch.preset.Manager.registerPreset("hoursAnd1WorkWeek", {
+    "timeColumnWidth":60,
+    "rowHeight":24,
+    "resourceColumnWidth":100,
+    "displayDateFormat":"G:i",
+    "shiftIncrement":1,
+    "shiftUnit":"w",
+    "defaultSpan":168,
+    "timeResolution":{
+        "unit":"mi",
+        "increment": 30
+    },
+    "headerConfig": {
+        "middle": {
+            "unit":"h",
+            "dateFormat":"H:i",
+            "increment": 1
+        },
+        "top":{
+            "unit":"d",
+            "dateFormat":"l m/d/Y"
+        }
+    }
+});
+
+Sch.preset.Manager.registerPreset("hoursAnd2WorkWeek", {
+    "timeColumnWidth":60,
+    "rowHeight":24,
+    "resourceColumnWidth":100,
+    "displayDateFormat":"G:i",
+    // Shift 2 weeks at once
+    "shiftIncrement":2,
+    "shiftUnit":"w",
+    "defaultSpan":336,
+    "timeResolution":{
+        "unit":"mi",
+        "increment": 30
+    },
+    "headerConfig": {
+        "middle": {
+            "unit":"h",
+            "dateFormat":"H:i",
+            "increment": 2
+        },
+        "top":{
+            "unit":"d",
+            "dateFormat":"l m/d/Y"
+        }
+    }
+});
+
 // ===================================
+
+Ext.define('TimeAxis', {
+    extend  : 'Sch.data.TimeAxis',
+
+    generateTicks : function(start, end, unit, increment) {
+        // Options are: 1) set specific time span on button click and filter time axis 2) override generate ticks method (implemented)
+        // We need some condition to enable custom ticks generation
+        if (!this.useCustomTickGenerator) {
+            this.isContinuous = true;
+            return this.callParent(arguments);
+        }
+
+        // we are skipping time, set this to false
+        this.isContinuous = false;
+
+        var ticks = [],
+        // we will ignore sat/sun
+            filterDays = { 0: true, 6: true };
+        
+        if (this.autoAdjust) {
+            // Set passed start date to monday of corresponding week
+            var day = start.getDay();
+            if (day !== 1) {
+                start = Sch.util.Date.add(Ext.Date.clearTime(start), Sch.util.Date.DAY, 1 - (day === 0 ? 7 : day));
+            }
+            start = this.floorDate(start || this.getStart(), false);
+            // add 1 or 2 weeks
+            end = this.ceilDate(Sch.util.Date.add(start, this.mainUnit, this.defaultSpan), false)
+        }
+        
+        while (start < end) {
+            if (start.getHours() >= 9 && start.getHours() < 17 && !filterDays[start.getDay()]) {
+                var newTick = {
+                    start : start,
+                    end   : Sch.util.Date.add(start, unit, increment)
+                }
+                ticks.push(newTick);
+                start = newTick.end;
+            } else {
+                if (start.getHours() >= 17 || filterDays[start.getDay()]) {
+                    start = Sch.util.Date.add(start, Sch.util.Date.DAY, 1);
+                }
+                start.setHours(9);
+            }
+        }
+        return ticks;
+    }
+})
 
 /**
  * This employee scheduler shows the tasks booked for each resource.
@@ -131,6 +230,17 @@ Ext.define("MyApp.view.EmployeeScheduler", {
     enableDragCreation  : false,
     rowHeight           : 30,
     viewPreset          : 'hourAnd1Day',
+    timeAxis            : new TimeAxis(),
+
+    switchViewPreset : function (name) {
+        if (name.indexOf('WorkWeek') !== -1) {
+            this.timeAxis.useCustomTickGenerator = true;
+        } else {
+            this.timeAxis.useCustomTickGenerator = false;
+        }
+
+        return this.callParent(arguments);
+    },
 
     initComponent : function() {
         var availabilityStore = this.resourceZones;
@@ -301,6 +411,22 @@ Ext.define("MyApp.view.EmployeeScheduler", {
 		                },
 		                scope : this
 		            },
+                    {
+                        text : '1 work week',
+                        iconCls : 'icon-calendar',
+                        handler : function () {
+                            this.switchViewPreset('hoursAnd1WorkWeek');
+                        },
+                        scope : this
+                    },
+                    {
+                        text : '2 work week',
+                        iconCls : 'icon-calendar',
+                        handler : function () {
+                            this.switchViewPreset('hoursAnd2WorkWeek');
+                        },
+                        scope : this
+                    },
 		            {
 		                xtype       : 'datefield',
 		                emptyText   : 'Select a date...',
