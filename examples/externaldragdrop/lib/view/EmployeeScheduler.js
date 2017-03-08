@@ -270,6 +270,18 @@ Ext.define("MyApp.view.EmployeeScheduler", {
                 return availabilityStore.isResourceAvailable(targetResourceRecord, date, D.add(date, D.MILLI, duration));
             },
 
+            lockedGridConfig : {
+                width : 120,
+                listeners: {
+                    resize : function (locked, width) {
+                        locked.down('gridcolumn').setWidth(width);
+                    }
+                }
+            },
+
+            layout: 'border',
+            split : true,
+
             columns         : [
                 {
                     header      : 'Staff',

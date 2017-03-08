@@ -165,3 +165,8 @@ div.optimal
 {
     height : 45px;    
 }
+
+.sch-schedulerpanel .x-splitter {
+    background-color: rgb(223, 232, 246);
+    border-right: 1px solid rgb(153, 188, 232);
+}
