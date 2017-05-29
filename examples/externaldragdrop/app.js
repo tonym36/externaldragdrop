@@ -7,6 +7,10 @@
  * http://www.bryntum.com/docs
  */
 
+// if showResourcesAsTree is false, load "dummydata/resources.js"
+// if showResourcesAsTree is true, load "dummydata/resources-tree.js"
+var showResourcesAsTree = true;
+
 // MVC relies on loading on demand, so we need to enable and configure the loader
 Ext.Loader.setConfig({
     disableCaching  : true,
