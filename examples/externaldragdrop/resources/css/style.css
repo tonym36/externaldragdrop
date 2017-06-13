@@ -2,7 +2,7 @@
 {
     border-bottom-color: lightBlue;
     border-top-color: #FFEEEE;
-    color:#fff;
+    color: #252525;
     background:transparent;
 }
 
@@ -16,11 +16,8 @@
     background-color: navy !important;
 }
 
-.staffscheduler .x-grid-inner-locked .x-grid-cell-first div
-{
-    background: url(../images/user.png) no-repeat 3px center;
-    padding-left:27px;
-    color: #252525 !important;
+.staffscheduler img.user-icon {
+    background-image: url(../images/user.png);
 }
 
 .sch-schedulerpanel .x-grid-inner-locked .x-grid-row-focused .x-grid-cell-inner {

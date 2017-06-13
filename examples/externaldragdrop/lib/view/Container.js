@@ -20,13 +20,21 @@ Ext.define("MyApp.view.Container", {
     height      : 600,
     border      : false,
 
+    showResourcesAsTree : false,
+
     // Custom configs for this panel, which will be passed on to the two child scheduler panels
     startDate   : null,
     endDate     : null,
 
     initComponent : function() {
         var eventStore = new MyApp.store.EventStore();
-        var resourceStore = new MyApp.store.ResourceStore();
+        var resourceStore = new MyApp.store.ResourceStore({
+            proxy   : {
+                type    : 'ajax',
+                url     : this.showResourcesAsTree ? 'dummydata/resources-tree.js' : 'dummydata/resources.js',
+                reader  : { type : 'json' }
+            }
+        });
         var availabilityStore = new MyApp.store.AvailabilityStore();
         resourceStore.availabilityStore = availabilityStore;
 
@@ -55,7 +63,6 @@ Ext.define("MyApp.view.Container", {
 
         // In a real life application, you'd probably batch these store loads to just use one Ajax request.
         eventStore.load();
-        resourceStore.load();
         availabilityStore.load();
     }
 });

@@ -207,7 +207,7 @@ Ext.define('TimeAxis', {
  * After it is rendered, it also sets up the drop zone which indicates it can accept drops on the schedule area.
  */
 Ext.define("MyApp.view.EmployeeScheduler", {
-    extend              : 'Sch.panel.SchedulerGrid',
+    extend              : 'Sch.panel.SchedulerTree',
     alias               : 'widget.employeescheduler',
 
     // Let the Ext.Loader know what this class 'requires' to function, these classes will be loaded before this class is defined
@@ -271,7 +271,7 @@ Ext.define("MyApp.view.EmployeeScheduler", {
             },
 
             lockedGridConfig : {
-                width : 120,
+                width : 200,
                 listeners: {
                     resize : function (locked, width) {
                         locked.down('gridcolumn').setWidth(width);
@@ -284,8 +284,9 @@ Ext.define("MyApp.view.EmployeeScheduler", {
 
             columns         : [
                 {
+                    xtype       : 'treecolumn',
                     header      : 'Staff',
-                    width       : 120,
+                    width       : 200,
                     dataIndex   : 'Name'
                 }/*,
                 {

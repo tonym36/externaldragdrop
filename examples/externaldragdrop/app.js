@@ -61,6 +61,7 @@ Ext.application({
         this.mainContainer = new MyApp.view.Container({
             startDate   : new Date(2011, 8, 1, 0),
             endDate     : new Date(2011, 8, 1, 23),
+            showResourcesAsTree : showResourcesAsTree,
             renderTo    : 'container' // A div on the page
         });
     },
