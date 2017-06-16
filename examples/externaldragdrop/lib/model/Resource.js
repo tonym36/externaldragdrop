@@ -6,6 +6,6 @@ Ext.define("MyApp.model.Resource", {
     extend : "Sch.model.Resource",
 
     isAvailable : function(start, end) {
-        return this.store.isResourceAvailable(this, start, end);
+        return this.store.treeStore.isResourceAvailable(this, start, end);
     }
 })

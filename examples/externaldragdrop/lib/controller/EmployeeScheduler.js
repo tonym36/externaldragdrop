@@ -18,7 +18,7 @@ Ext.define("MyApp.controller.EmployeeScheduler", {
     init : function() {
         this.control({
             // We should react to task drops coming from the external grid
-            'employeescheduler schedulergridview' : {
+            'employeescheduler schedulertreeview' : {
                 unplannedtaskdrop : this.onUnplannedTaskDrop
             },
             'employeescheduler' : {
